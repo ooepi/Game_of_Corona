@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+void draw_grid(void);
+void simulate(void);
+
+struct cell{
+    int current;
+    int future;
+};
+
+int x, y, i, j;
+
+int main(void){
+
+
+
+
+
+    draw_grid();
+
+//    simulate();
+
+}
+
+
+void draw_grid(){
+    x=7;
+    y=7;
+
+    for(i=0; i<y; i++){
+        for(j=0; j<x; j++){
+            printf(".");
+        }
+        printf("\n");
+    }
+}
+
+/*void simulate(){
+
+    cell1.current = 1;
+    
+
+}*/

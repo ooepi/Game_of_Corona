@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <ncurses.h>
+#include <windows.h>
 
 struct cell{
     int current;
@@ -12,6 +13,7 @@ void draw_board(void);
 void game_setup(void);
 void next_step(void);
 int calculate_neighbors(int i, int j);
+void print_curses(void);
 
 struct cell board[10][10] = {0};
 
@@ -25,17 +27,6 @@ int x, y, i, j;
 
 int main(void){
 
-    initscr();
-
-    start_color();
-	init_pair(1, COLOR_WHITE, COLOR_BLUE);
-    bkgd(COLOR_PAIR(1));
-
-    mvprintw(10, 10, "x");
-
-    getch();
-
-    endwin();
 
     x=7;
     y=7;
@@ -44,24 +35,7 @@ int main(void){
 
     game_setup();
 
-    draw_board();
-    printf("\n");
-    
-    next_step();
-        printf("\n\n");
-    draw_board();
-    printf("\n");
-
-    next_step();
-        printf("\n\n");
-    draw_board();
-    printf("\n");
-
-    next_step();
-        printf("\n\n");
-    draw_board();
-    printf("\n");
-
+    print_curses();
 
 }
 
@@ -83,15 +57,21 @@ void init_board(){
 
 void draw_board(){
 
+    move(0,0);
+
     for(i=0; i<y; i++){
         for(j=0; j<x; j++){
             if(board[i][j].current == 1){
-                printf("o");    //if value is 1, print the cell
+                attron(COLOR_PAIR(1));
+                printw(" ");    //if value is 1, print the cell
+                attroff(COLOR_PAIR(1));
             } else {
-                printf(".");    //otherwise print empty (".")
+                attron(COLOR_PAIR(2));
+                printw(" ");    //otherwise print empty
+                attroff(COLOR_PAIR(2));
             }
         }
-        printf("\n");
+        printw("\n");
     }
 }
 
@@ -167,4 +147,31 @@ int calculate_neighbors(int i, int j){
             return 1;                    //if neighbors are 2 or 3, cell survives
         }
     }
+}
+
+void print_curses(void){
+
+    initscr();
+
+    start_color();
+	init_pair(1, COLOR_WHITE, COLOR_BLUE);
+    init_pair(2, COLOR_BLUE, COLOR_WHITE);
+
+//    bkgd(COLOR_PAIR(1));
+
+
+    for(int s = 0; s<20; s++){
+
+        draw_board();
+        next_step();
+        refresh();
+
+        Sleep(500);
+        refresh();
+
+    }
+
+    getch();
+    endwin();
+
 }

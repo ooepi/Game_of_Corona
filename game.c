@@ -24,6 +24,7 @@ int x, y, i, j;
 
 int main(void){
 
+
     x=7;
     y=7;
 
@@ -155,3 +156,4 @@ int calculate_neighbors(int i, int j){
         }
     }
 }
+

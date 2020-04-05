@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <ncurses.h>
 #include <windows.h>
+#include <string.h>
 
 struct cell{
     int current;
@@ -14,6 +15,7 @@ void game_setup(void);
 void next_step(void);
 int calculate_neighbors(int i, int j);
 void print_curses(void);
+int main_menu(void);
 
 struct cell board[10][10] = {0};
 
@@ -22,20 +24,31 @@ struct cell board[10][10] = {0};
 /*VARIABLES*/
 
 int x, y, i, j;
+int yMax, xMax;
 
 /*START OF MAIN*/
 
 int main(void){
 
+    initscr();
+    cbreak();
+    curs_set(0);
 
-    x=7;
-    y=7;
+
+
+    getmaxyx(stdscr, yMax, xMax);
+
+    main_menu();
+
+
+    x=10;
+    y=10;
 
     init_board();
 
     game_setup();
 
-    print_curses();
+//    print_curses();
 
 }
 
@@ -174,4 +187,78 @@ void print_curses(void){
     getch();
     endwin();
 
+}
+
+int main_menu(void){
+
+    
+    /* Init Title */
+    WINDOW * titlewin = newwin(12, 125, 5, xMax/2-62);
+    wborder(titlewin, 35, 35, 35, 35, 35, 35, 35, 35);
+
+    /* Init the game mode menu */
+    WINDOW * gamemodewin = newwin(5, 20, yMax-15, xMax/2-10);
+    box(gamemodewin, 0, 0);
+    char *gamemodes[3] = {"Game of Life", "Game of War", "Game of Corona"};
+    int option;
+    int highlight = 0;
+    keypad(gamemodewin, true);
+
+
+    refresh();
+
+    /* Printing title */
+
+    mvwprintw(titlewin, 2,2,"  ,ad8888ba,                                                                 ad88     88           88     ad88            ");
+    mvwprintw(titlewin, 3,2," d8'     `'8b                                                               d8'       88           **    d8'              ");
+    mvwprintw(titlewin, 4,2,"d8'                                                                         88        88                 88               ");
+    mvwprintw(titlewin, 5,2,"88             ,adPPYYba,  88,dPYba,,adPYba,    ,adPPYba,      ,adPPYba,  MM88MMM     88           88  MM88MMM  ,adPPYba, ");
+    mvwprintw(titlewin, 6,2,"88      88888  ''     `Y8  88P'   '88'    '8a  a8P_____88     a8'     '8a   88        88           88    88    a8P_____88 ");
+    mvwprintw(titlewin, 7,2,"Y8,        88  ,adPPPPP88  88      88      88  8PP*******     8b       d8   88        88           88    88    8PP******* ");
+    mvwprintw(titlewin, 8,2," Y8a.    .a88  88,    ,88  88      88      88  '8b,   ,aa     '8a,   ,a8'   88        88           88    88    '8b,   ,aa ");
+    mvwprintw(titlewin, 9,2,"  `*Y88888P*   `*8bbdP'Y8  88      88      88   `*Ybbd8*'      `*YbbdP*'    88        88888888888  88    88     `*Ybbd8*' ");
+
+    wrefresh(titlewin);
+
+    /* Game mode option functionality */
+
+    while(1){
+        for(int o = 0; o < 3; o++){
+            if(o == highlight){
+                wattron(gamemodewin, A_REVERSE);
+            }
+            mvwprintw(gamemodewin, o+1, 1, gamemodes[o]);
+            wattroff(gamemodewin, A_REVERSE);
+        }
+        option = wgetch(gamemodewin);
+
+        switch (option)
+        {
+        case KEY_UP:
+            highlight--;
+            if(highlight == -1){
+                highlight = 0;
+            }
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if(highlight == 3){
+                highlight = 2;
+            }
+            break;
+        default:
+            break;
+        }
+
+        if(option == 10){
+            break;
+        }
+
+
+
+
+    }
+
+    wrefresh(gamemodewin);
+    getch();
 }

@@ -40,13 +40,16 @@
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
 
+#ifdef WIN32
+    #include <windows.h>
+#endif
+
 #include <stdio.h>
 #include <unistd.h>
 #include <ncurses.h>
-#include <windows.h>
+#include <time.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 #include <stdbool.h>
 
 /*-------------------------------------------------------------------*
@@ -135,10 +138,12 @@ int main (void){
 
     while(getch()!='x'){
         next_step();
-        Sleep(300);
+        #ifdef linux
+            usleep(300000);
+        #elif WIN32
+            Sleep(300);
+        #endif
     }
-
-    getch();
     endwin();
 
 }   /* end of main */

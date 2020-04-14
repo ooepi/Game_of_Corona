@@ -30,7 +30,7 @@ void init_seed(int seed);
 
 struct cell board[69][255] = {0};
 
-char map[255][69] = {' '};
+char map[150][40] = {' '};
 
 
 /*VARIABLES*/
@@ -537,12 +537,13 @@ void init_map(int map_number){
         j=0;
         for(int i=0; i<sizeof line; i++){
             if(line[i]=='~'){
-                
+                map[j][i] = '~';
                 wattron(gameplaywin, COLOR_PAIR(1));
                 wprintw(gameplaywin, "%c", line[i]);
                 wattroff(gameplaywin, COLOR_PAIR(1));
                 map[j][i] = '~';
             } else {
+                map[j][i] = ' ';
                 wattron(gameplaywin, COLOR_PAIR(2));
                 wprintw(gameplaywin, "%c", line[i]);
                 wattroff(gameplaywin, COLOR_PAIR(2));
@@ -679,7 +680,7 @@ void init_seed(int seed){
 
     init_pair(1, COLOR_WHITE, COLOR_BLUE);
     init_pair(2, COLOR_WHITE, COLOR_GREEN);
-    init_pair(3, COLOR_WHITE, COLOR_WHITE);
+    init_pair(3, COLOR_BLACK, COLOR_WHITE);
 
 
 
@@ -737,25 +738,56 @@ void init_seed(int seed){
         } else if (map_choice>=4){
             for(i=0; i<60; i++){
                 for(j=0; j<170; j++){
+
+                    int r = rand()%2;
+                    board[i][j].current = r;
+                    /*
                     if(map[i][j]=='~'){
                         wattron(gameplaywin, COLOR_PAIR(1));
                         mvwprintw(gameplaywin, i, j, "~");
                         wattroff(gameplaywin, COLOR_PAIR(1));
+                        Sleep(500);
                     } else {
-                        int r = rand()%2;
-                        board[i][j].current = r;
+//                        int r = rand()%2;
+//                        board[i][j].current = r;
                         if(board[i][j].current = 1){
                             wattron(gameplaywin, COLOR_PAIR(3));
                             mvwprintw(gameplaywin, i, j, "x");
                             wattroff(gameplaywin, COLOR_PAIR(3));
+                            wrefresh(gameplaywin);
                         } else {
                             wattron(gameplaywin, COLOR_PAIR(2));
                             mvwprintw(gameplaywin, i, j, " ");
                             wattroff(gameplaywin, COLOR_PAIR(2));
+                            wrefresh(gameplaywin);
                         }
                     }
                     //int r = rand()%2;
-                    //board[i][j].current = r;
+                    //board[i][j].current = r;*/
+                }
+            }
+            for(i=0; i<60; i++){
+                for(j=0; j<170; j++){
+                    if(map[i][j]=='~'){
+                        wattron(gameplaywin, COLOR_PAIR(1));
+                        /*mv*/wprintw(gameplaywin,/* i, j,*/ "~");
+                        wattroff(gameplaywin, COLOR_PAIR(1));
+                        Sleep(20);
+                    } else {
+                        if(board[i][j].current == 0){
+                            wattron(gameplaywin, COLOR_PAIR(3));
+                            /*mv*/wprintw(gameplaywin,/* i, j,*/ "x");
+                            wattroff(gameplaywin, COLOR_PAIR(3));
+                            wrefresh(gameplaywin);
+                            
+                        } else {
+                            wattron(gameplaywin, COLOR_PAIR(2));
+                            /*mv*/wprintw(gameplaywin,/* i, j,*/ " ");
+                            wattroff(gameplaywin, COLOR_PAIR(2));
+                            wrefresh(gameplaywin);
+                            Sleep(20);
+                        }
+                    }
                 }
             }
         }

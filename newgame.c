@@ -1,3 +1,7 @@
+/** @file newgame.c */
+
+
+
 /***************************************************************************
  *   Copyright (C) 2020 by Robert Harmaakivi                               *
  *   robert.harmaakivi@gmail.com                                           *
@@ -36,6 +40,8 @@
 
 **********************************************************************/
 
+/** @todo Remove all global variables */
+
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
@@ -61,7 +67,9 @@
 
 /* Global variables */
 
-int y,x,i,j,yMax,xMax;
+
+
+int y,x,i,j,yMax,xMax; 
 int mapchoice = 0;
 int seedchoice = 0;
 int day, month, year;
@@ -73,9 +81,9 @@ int map[200][200] = {0,0};
 /* Global structures */
 
 struct cell{
-    int current;
-    int future;
-    bool infection;
+    int current;        /**< Sets the current cell to dead or alive */
+    int future;         /**< Sets the future cell to dead or alive */
+    bool infection;     /**< Shows the current status of the infection */
 };
 
 struct cell board[60][200] = {0,0};
@@ -86,7 +94,7 @@ struct cell board[60][200] = {0,0};
 
 void map_choice(void);
 void seed_choice(void);
-void initgame(int mapchoice, int seedchoice);
+void initgame(int mapchoice, int seedchoice); 
 void next_step(void);
 int calculate_future(int i, int j);
 void date_and_infection(void);
@@ -150,19 +158,16 @@ int main (void){
 
 /*********************************************************************
 *    FUNCTIONS                                                       *
-**********************************************************************/
-
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME: map_choice
- DESCRIPTION: Prints the game title, and lets player choose from the 2
-              maps available
-	Input: void
-	Output: void
-  Used global variables: yMax, xMax, mapchoice
- REMARKS when using this function: -
 *********************************************************************/
+
+/*********************************************************************/
+/**
+ \fn void map_choice(void)
+ \brief Prints the game title, and lets player choose from the 2 maps available
+	\param void
+	\return void
+ */
+/*********************************************************************/
 
 void map_choice(void){
 
@@ -236,19 +241,17 @@ void map_choice(void){
     wrefresh(mapwin);
 }
 
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME: seed_choice
- DESCRIPTION: lets the player choose the seed from 2 options, random or
-              predetermined
-	Input: void
-	Output: void
-  Used global variables: yMax, xMax, seedchoice
- REMARKS when using this function: NOT IN USE FOR THIS VERSION
-*********************************************************************/
+/*********************************************************************/
+/**
+ \fn void seed_choice(void)
+ \brief lets the player choose the seed from 2 options, random or predetermined
+	\param void
+	\return void
+ */
+/*********************************************************************/
 
-void seed_choice(void){
+
+void seed_choice(void){ 
 
     /* Init the seed choice menu */
     WINDOW * seedwin = newwin(4, 20, yMax-30, xMax/2-10);
@@ -303,16 +306,15 @@ void seed_choice(void){
     wrefresh(seedwin);
 }
 
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME: initgame
- DESCRIPTION: initializes the game, depending on the map and seed choises
-	Input: int mapchoice, int seedchoice
-	Output: void
-  Used global variables: mapchoice, seedchoice, i, j, a, 
- REMARKS when using this function:
-*********************************************************************/
+/*********************************************************************/
+/**
+ \fn void initgame(int mapchoice, int seedchoice)
+ \brief initializes the game, depending on the map and seed choises
+	\param int mapchoice
+    \param int seedchoice
+	\return void
+ */
+/*********************************************************************/
 
 void initgame(int mapchoice, int seedchoice){
 
@@ -375,17 +377,14 @@ void initgame(int mapchoice, int seedchoice){
 
 }
 
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME: next_step
- DESCRIPTION: takes the next step in the game. prints the board according
-              to the current status of cells
-	Input: void
-	Output: void
-  Used global variables: i, j, rounds
- REMARKS when using this function:
-*********************************************************************/
+/*********************************************************************/
+/**
+ \fn void next_step(void)
+ \brief takes the next step in the game. prints the board according to the current status of cells
+	\param void
+	\return void
+ */
+/*********************************************************************/
 
 void next_step(void){
 
@@ -447,19 +446,18 @@ void next_step(void){
     
 }
 
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME: calculate_future
- DESCRIPTION: calculates the future status of cells, according to the
-              rules set in game of life. also added the functionality
-              for the infection.
-	Input: int i, int j
-	Output: int
-  Used global variables: i, j, a, b, mapchoice
- REMARKS when using this function: the infection rates have been set 
-                                   to match the current map options
-*********************************************************************/
+
+/*********************************************************************/
+/**
+ \fn int calculate_future(int i, int j)
+ \brief calculates the future status of cells, according to the rules set in game of life. also added the functionality for the infection.
+	\param int i
+    \param int j
+	\return 1 or 0, depending on the status(dead or alive)
+ */
+/*********************************************************************/
+
+
 
 int calculate_future(int i, int j){
 
@@ -522,17 +520,14 @@ int calculate_future(int i, int j){
     }
 }
 
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME: date_and_infection
- DESCRIPTION: keeps track, and prints the current date, and infections
-	Input: void
-	Output: void
-  Used global variables: i, j, infected, healthy
- REMARKS when using this function: has the calculator for healthy, but
-                                   its not used in this version
-*********************************************************************/
+/*********************************************************************/
+/**
+ \fn void date_and_infection(void)
+ \brief keeps track, and prints the current date, and infections
+	\param void
+	\return void
+ */
+/*********************************************************************/
 
 void date_and_infection(void){
 
@@ -590,18 +585,15 @@ void date_and_infection(void){
 
 }
 
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME: infect
- DESCRIPTION: sets infections depending on the round
-	Input: rounds
-	Output: void
-  Used global variables: i, j, rounds
- REMARKS when using this function: set to use with the world map.
-                                   infection starts in china, and after
-                                   30 rounds, tries to infect the USA
-*********************************************************************/
+
+/*********************************************************************/
+/**
+ \fn void infect(int rounds)
+ \brief sets infections depending on the round
+	\param int rounds
+	\return void
+ */
+/*********************************************************************/
 
 void infect(int rounds){
 

@@ -1,51 +1,5 @@
 /** @file newgame.c */
 
-
-
-/***************************************************************************
- *   Copyright (C) 2020 by Robert Harmaakivi                               *
- *   robert.harmaakivi@gmail.com                                           *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
- ***************************************************************************/
-
-/*********************************************************************
-
- 1.  NAME
-     Game Of Corona 
-
- 2.  DESCRIPTION
-     This is a 2020 take on the classic Game of Life, with infection mechanics
-     added to it. There are two map choises, a rectangle, or world map, and
-     the infection mechanics vary a bit depending on the map.
-
- 3.  VERSIONS
-       Original:
-         14.4.2020 / Robert Harmaakivi
-
-       Version history:
-
-**********************************************************************/
-
-/** @todo Remove all global variables */
-
-/*-------------------------------------------------------------------*
-*    HEADER FILES                                                    *
-*--------------------------------------------------------------------*/
-
 #ifdef WIN32
     #include <windows.h>
 #endif
@@ -58,53 +12,35 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/*-------------------------------------------------------------------*
-*    GLOBAL VARIABLES AND CONSTANTS                                  *
-*--------------------------------------------------------------------*/
-/* Control flags */
-
-/* Global constants */
-
-/* Global variables */
-
-
-
-int y,x,i,j,yMax,xMax; 
-int mapchoice = 0;
-int seedchoice = 0;
-int day, month, year;
-int infected = 0;
-int healthy = 0;
-int rounds = 0;
-int map[200][200] = {0,0};
-
-/* Global structures */
-
 struct cell{
     int current;        /**< Sets the current cell to dead or alive */
     int future;         /**< Sets the future cell to dead or alive */
     bool infection;     /**< Shows the current status of the infection */
 };
 
-struct cell board[60][200] = {0,0};
-
-/*-------------------------------------------------------------------*
-*    FUNCTION PROTOTYPES                                             *
-*--------------------------------------------------------------------*/
-
-void map_choice(void);
-void seed_choice(void);
-void initgame(int mapchoice, int seedchoice); 
-void next_step(void);
-int calculate_future(int i, int j);
-void date_and_infection(void);
-void infect(int rounds);
-
-/*********************************************************************
-*    MAIN PROGRAM                                                    *
-*********************************************************************/
+int map_choice(void);
+void initgame(int mapchoice, int map[200][200], struct cell board[60][200]); 
+void next_step(int map[200][200], struct cell board[60][200], int rounds, int mapchoice);
+int calculate_future(int i, int j, int map[200][200], struct cell board[60][200], int mapchoice);
+void date_and_infection(struct cell board[60][200], int infected, int healthy, int day, int month, int year);
+void infect(int rounds, struct cell board[60][200]);
 
 int main (void){
+
+    struct cell board[60][200] = {0,0};
+    int map[200][200] = {0,0};
+    
+    int i = 0;
+    int j = 0;
+
+    int infected = 0;
+    int healthy = 0;
+
+    int day = 8;
+    int month = 12;
+    int year = 2019;
+
+    int rounds = 0;
 
     initscr();
     cbreak();
@@ -128,24 +64,21 @@ int main (void){
     init_pair(4, COLOR_RED, COLOR_GREEN);   //color 4 = infection
 
 
-    getmaxyx(stdscr, yMax, xMax);
+    
 
     
 
-    day = 8;
-    month = 12;
-    year = 2019;
 
 
-    map_choice();
-//    seed_choice();
 
-    seedchoice = 1;
-    initgame(mapchoice, seedchoice);
+    int mapchoice = map_choice();
+
+    initgame(mapchoice, map, board);
 
 
     while(getch()!='x'){
-        next_step();
+        next_step(map, board, rounds, mapchoice);
+        date_and_infection(board, infected, healthy, day, month, year);
         #ifdef linux
             usleep(300000);
         #elif WIN32
@@ -156,10 +89,6 @@ int main (void){
 
 }   /* end of main */
 
-/*********************************************************************
-*    FUNCTIONS                                                       *
-*********************************************************************/
-
 /*********************************************************************/
 /**
  \fn void map_choice(void)
@@ -169,7 +98,9 @@ int main (void){
  */
 /*********************************************************************/
 
-void map_choice(void){
+int map_choice(void){
+    int yMax,xMax;
+    getmaxyx(stdscr, yMax, xMax);
 
     /* Init the map menu */
     WINDOW * mapwin = newwin(4, 20, yMax-30, xMax/2-10);
@@ -230,80 +161,15 @@ void map_choice(void){
 
         if(option == 10){
             if(highlight == 0){
-                mapchoice = 1;
+                return 1;
             } else if (highlight == 1){
-                mapchoice = 2;
+                return 2;
             }
             break;
         }
     }
 
     wrefresh(mapwin);
-}
-
-/*********************************************************************/
-/**
- \fn void seed_choice(void)
- \brief lets the player choose the seed from 2 options, random or predetermined
-	\param void
-	\return void
- */
-/*********************************************************************/
-
-
-void seed_choice(void){ 
-
-    /* Init the seed choice menu */
-    WINDOW * seedwin = newwin(4, 20, yMax-30, xMax/2-10);
-    box(seedwin, 0, 0);
-    char *seeds[2] = {"Random", "Predetermined"};
-    int option;
-    int highlight = 0;
-    
-    keypad(seedwin, true);
-
-
-    /* seed option functionality */
-
-    while(1){
-        for(int o = 0; o < 2; o++){
-            if(o == highlight){
-                wattron(seedwin, A_REVERSE);
-            }
-            mvwprintw(seedwin, o+1, 1, seeds[o]);
-            wattroff(seedwin, A_REVERSE);
-        }
-        option = wgetch(seedwin);
-
-        switch (option)
-        {
-        case KEY_UP:
-            highlight--;
-            if(highlight == -1){
-                highlight = 0;
-            }
-            break;
-        case KEY_DOWN:
-            highlight++;
-            if(highlight == 2){
-                highlight = 1;
-            }
-            break;
-        default:
-            break;
-        }
-
-        if(option == 10){
-            if(highlight == 0){
-                seedchoice = 1;
-            } else if (highlight == 1){
-                seedchoice = 2;
-            }
-            break;
-        }
-    }
-
-    wrefresh(seedwin);
 }
 
 /*********************************************************************/
@@ -316,7 +182,9 @@ void seed_choice(void){
  */
 /*********************************************************************/
 
-void initgame(int mapchoice, int seedchoice){
+void initgame(int mapchoice, int map[200][200], struct cell board[60][200]){
+    int i = 0;
+    int j = 0;
 
     clear();
 
@@ -326,54 +194,50 @@ void initgame(int mapchoice, int seedchoice){
     file_pointer = fopen("worldmaplarge1.txt", "r");
     int a = 0;
 
-    if(seedchoice==1){                      //random seed
-        if(mapchoice==1){                   //square map
-            for(i=0; i<59; i++){
-                for(j=0; j<200; j++){
-                    map[i][j]=1;            //set the whole square as playable
-                    int r = rand()%2;       //50% chance of creating a cell
-                    board[i][j].current = r;
+    if(mapchoice==1){                   //square map
+        for(i=0; i<59; i++){
+            for(j=0; j<200; j++){
+                map[i][j]=1;            //set the whole square as playable
+                int r = rand()%2;       //50% chance of creating a cell
+                board[i][j].current = r;
+            }
+            refresh();
+        } 
+    } else if (mapchoice==2) {          //world map
+
+        while(fgets(line, sizeof line, file_pointer) != NULL){
+            move(a,0);
+            int i=0;
+            for(int j=0; j<sizeof line; j++){
+                if(line[j]=='~'){
+                    map[a][j] = 0;      //if map is 0, that means water
+                    attron(COLOR_PAIR(3));
+                    printw("%c", line[j]);
+                    attroff(COLOR_PAIR(3));
+                } else {
+                    map[a][j] = 1;      //if map is 1, that means land
+                    attron(COLOR_PAIR(2));
+                    printw("%c", line[j]);
+                    attroff(COLOR_PAIR(2));
                 }
                 refresh();
-            } 
-        } else if (mapchoice==2) {          //world map
-
-            while(fgets(line, sizeof line, file_pointer) != NULL){
-                move(a,0);
-                int i=0;
-                for(int j=0; j<sizeof line; j++){
-                    if(line[j]=='~'){
-                        map[a][j] = 0;      //if map is 0, that means water
-                        attron(COLOR_PAIR(3));
-                        printw("%c", line[j]);
-                        attroff(COLOR_PAIR(3));
-                    } else {
-                        map[a][j] = 1;      //if map is 1, that means land
-                        attron(COLOR_PAIR(2));
-                        printw("%c", line[j]);
-                        attroff(COLOR_PAIR(2));
-                    }
-                    refresh();
-                    i++;
-                }
-                a++;
+                i++;
             }
+            a++;
+        }
 
-            for(i=0; i<60; i++){
-                for(j=0; j<200; j++){
-                    board[i][j].infection = false; //set infection initially to 0
-                    if(map[i][j]==0){              //cannot live on water
-                        board[i][j].current = 0;
-                    } else if (map[i][j]==1){      //if theres land, cells can be made
-                        int r = rand()%2;
-                        board[i][j].current = r;
-                    }
+        for(i=0; i<60; i++){
+            for(j=0; j<200; j++){
+                board[i][j].infection = false; //set infection initially to 0
+                if(map[i][j]==0){              //cannot live on water
+                    board[i][j].current = 0;
+                } else if (map[i][j]==1){      //if theres land, cells can be made
+                    int r = rand()%2;
+                    board[i][j].current = r;
                 }
             }
         }
     }
-    
-//    if(seedchoice==2){}
 
 }
 
@@ -386,12 +250,14 @@ void initgame(int mapchoice, int seedchoice){
  */
 /*********************************************************************/
 
-void next_step(void){
+void next_step(int map[200][200], struct cell board[60][200], int rounds, int mapchoice){
+    int i = 0;
+    int j = 0;
 
 
     for(i=0; i<59; i++){
         for(j=0; j<200; j++){ //setting the future state with following function
-            board[i][j].future = calculate_future(i,j);
+            board[i][j].future = calculate_future(i,j, map, board, mapchoice);
         }
     }
 
@@ -436,16 +302,15 @@ void next_step(void){
         }
     }
 
-    infect(rounds); //set the random infection
+    infect(rounds, board); //set the random infection
 
     rounds++;
 
-    date_and_infection(); 
+     
 
     refresh();
     
 }
-
 
 /*********************************************************************/
 /**
@@ -459,7 +324,7 @@ void next_step(void){
 
 
 
-int calculate_future(int i, int j){
+int calculate_future(int i, int j, int map[200][200], struct cell board[60][200], int mapchoice){
 
     int neighbors = 0;
     int a, b;
@@ -529,21 +394,21 @@ int calculate_future(int i, int j){
  */
 /*********************************************************************/
 
-void date_and_infection(void){
+void date_and_infection(struct cell board[60][200], int infected, int healthy, int day, int month, int year){
 
     int currently_infected = infected;
 
 
-    for(i=0; i<59; i++){
-        for(j=0; j<200; j++){
+    for(int i=0; i<59; i++){
+        for(int j=0; j<200; j++){
             if(board[i][j].current==1 && board[i][j].infection == true){
                 infected++;
             } 
         }
     }
 
-    for(i=0; i<59; i++){
-        for(j=0; j<200; j++){
+    for(int i=0; i<59; i++){
+        for(int j=0; j<200; j++){
             if(board[i][j].current==1 && board[i][j].infection == false){
                 healthy++;
             } 
@@ -595,11 +460,11 @@ void date_and_infection(void){
  */
 /*********************************************************************/
 
-void infect(int rounds){
+void infect(int rounds, struct cell board[60][200]){
 
     if(rounds<=1){
-        for(i=14; i<20; i++){
-            for(j=150; j<170; j++){
+        for(int i=14; i<20; i++){
+            for(int j=150; j<170; j++){
                 if(board[i][j].current==1){
                     if(rand()%100<=50){
                         board[i][j].infection = true;
@@ -608,8 +473,8 @@ void infect(int rounds){
             }
         }
     } else if (rounds > 30 && rounds < 40){
-        for(i=18; i<23; i++){
-            for(j=32; j<48; j++){
+        for(int i=18; i<23; i++){
+            for(int j=32; j<48; j++){
                 if(board[i][j].current==1){
                     if(rand()%100<=50){
                         board[i][j].infection = true;

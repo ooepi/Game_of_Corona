@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['infect_37',['infect',['../newgame_8c.html#a1c23cf88cc98d94a8729a038cf7c1660',1,'newgame.c']]],
-  ['initgame_38',['initgame',['../newgame_8c.html#a92f9b43bb78c524c2ae189655f710afa',1,'newgame.c']]]
+  ['main_25',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
+  ['map_5fchoice_26',['map_choice',['../init_8c.html#af6fabb88acaba2de001777adf8fc1c8c',1,'map_choice(void):&#160;init.c'],['../newgame_8h.html#af6fabb88acaba2de001777adf8fc1c8c',1,'map_choice(void):&#160;init.c']]]
 ];

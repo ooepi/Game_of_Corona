@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Game of Corona: game.c File Reference</title>
+<title>Game of Corona: newgame.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,23 +64,43 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">game.c File Reference</div>  </div>
+<div class="title">newgame.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="newgame_8h_source.html">newgame.h</a>&quot;</code><br />
-</div><table class="memberdecls">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;ncurses.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+</div>
+<p><a href="newgame_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcell.html">cell</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a63c5c78f3fc02b121865b49c12eae4b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a63c5c78f3fc02b121865b49c12eae4b1">next_step</a> (int map[200][200], struct <a class="el" href="structcell.html">cell</a> board[60][200], int rounds, int mapchoice)</td></tr>
-<tr class="memdesc:a63c5c78f3fc02b121865b49c12eae4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">takes the next step in the game. prints the board according to the current status of cells  <a href="game_8c.html#a63c5c78f3fc02b121865b49c12eae4b1">More...</a><br /></td></tr>
+<tr class="memitem:af6fabb88acaba2de001777adf8fc1c8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="newgame_8h.html#af6fabb88acaba2de001777adf8fc1c8c">map_choice</a> (void)</td></tr>
+<tr class="memdesc:af6fabb88acaba2de001777adf8fc1c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the game title, and lets player choose from the 2 maps available.  <a href="newgame_8h.html#af6fabb88acaba2de001777adf8fc1c8c">More...</a><br /></td></tr>
+<tr class="separator:af6fabb88acaba2de001777adf8fc1c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a050f3ecf58f2301571d3c809fb8ce5ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="newgame_8h.html#a050f3ecf58f2301571d3c809fb8ce5ae">initgame</a> (int mapchoice, int map[200][200], struct <a class="el" href="structcell.html">cell</a> board[60][200])</td></tr>
+<tr class="memdesc:a050f3ecf58f2301571d3c809fb8ce5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">initializes the game, depending on the map and seed choises  <a href="newgame_8h.html#a050f3ecf58f2301571d3c809fb8ce5ae">More...</a><br /></td></tr>
+<tr class="separator:a050f3ecf58f2301571d3c809fb8ce5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c5c78f3fc02b121865b49c12eae4b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="newgame_8h.html#a63c5c78f3fc02b121865b49c12eae4b1">next_step</a> (int map[200][200], struct <a class="el" href="structcell.html">cell</a> board[60][200], int rounds, int mapchoice)</td></tr>
+<tr class="memdesc:a63c5c78f3fc02b121865b49c12eae4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">takes the next step in the game. prints the board according to the current status of cells  <a href="newgame_8h.html#a63c5c78f3fc02b121865b49c12eae4b1">More...</a><br /></td></tr>
 <tr class="separator:a63c5c78f3fc02b121865b49c12eae4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96e3fac847c6af44132ad09b8ca4e660"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a96e3fac847c6af44132ad09b8ca4e660">calculate_future</a> (int i, int j, int map[200][200], struct <a class="el" href="structcell.html">cell</a> board[60][200], int mapchoice)</td></tr>
-<tr class="memdesc:a96e3fac847c6af44132ad09b8ca4e660"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the future status of cells, according to the rules set in game of life. also added the functionality for the infection.  <a href="game_8c.html#a96e3fac847c6af44132ad09b8ca4e660">More...</a><br /></td></tr>
+<tr class="memitem:a96e3fac847c6af44132ad09b8ca4e660"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="newgame_8h.html#a96e3fac847c6af44132ad09b8ca4e660">calculate_future</a> (int i, int j, int map[200][200], struct <a class="el" href="structcell.html">cell</a> board[60][200], int mapchoice)</td></tr>
+<tr class="memdesc:a96e3fac847c6af44132ad09b8ca4e660"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the future status of cells, according to the rules set in game of life. also added the functionality for the infection.  <a href="newgame_8h.html#a96e3fac847c6af44132ad09b8ca4e660">More...</a><br /></td></tr>
 <tr class="separator:a96e3fac847c6af44132ad09b8ca4e660"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13ccb413858e04b7cf5f77ce3b4a8afd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a13ccb413858e04b7cf5f77ce3b4a8afd">infect</a> (int rounds, struct <a class="el" href="structcell.html">cell</a> board[60][200])</td></tr>
-<tr class="memdesc:a13ccb413858e04b7cf5f77ce3b4a8afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets infections depending on the round  <a href="game_8c.html#a13ccb413858e04b7cf5f77ce3b4a8afd">More...</a><br /></td></tr>
+<tr class="memitem:a13ccb413858e04b7cf5f77ce3b4a8afd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="newgame_8h.html#a13ccb413858e04b7cf5f77ce3b4a8afd">infect</a> (int rounds, struct <a class="el" href="structcell.html">cell</a> board[60][200])</td></tr>
+<tr class="memdesc:a13ccb413858e04b7cf5f77ce3b4a8afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets infections depending on the round  <a href="newgame_8h.html#a13ccb413858e04b7cf5f77ce3b4a8afd">More...</a><br /></td></tr>
 <tr class="separator:a13ccb413858e04b7cf5f77ce3b4a8afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -178,6 +198,78 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="a050f3ecf58f2301571d3c809fb8ce5ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a050f3ecf58f2301571d3c809fb8ce5ae">&#9670;&nbsp;</a></span>initgame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initgame </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mapchoice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>map</em>[200][200], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structcell.html">cell</a>&#160;</td>
+          <td class="paramname"><em>board</em>[60][200]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initializes the game, depending on the map and seed choises </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>mapchoice </td></tr>
+    <tr><td class="paramname">int</td><td>map[200][200] </td></tr>
+    <tr><td class="paramname">struct</td><td>cell board[60][200] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="af6fabb88acaba2de001777adf8fc1c8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6fabb88acaba2de001777adf8fc1c8c">&#9670;&nbsp;</a></span>map_choice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int map_choice </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the game title, and lets player choose from the 2 maps available. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 or 2, depending on the map choice </dd></dl>
 
 </div>
 </div>

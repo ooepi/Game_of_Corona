@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['i_8',['i',['../newgame_8c.html#acb559820d9ca11295b4500f179ef6392',1,'newgame.c']]],
-  ['infect_9',['infect',['../newgame_8c.html#a1c23cf88cc98d94a8729a038cf7c1660',1,'newgame.c']]],
-  ['infected_10',['infected',['../newgame_8c.html#af41e0afec2c0be0f14077c4c60b07105',1,'newgame.c']]],
-  ['infection_11',['infection',['../structcell.html#a20ef4d174887fc76b98094ea46b08baf',1,'cell']]],
-  ['initgame_12',['initgame',['../newgame_8c.html#a92f9b43bb78c524c2ae189655f710afa',1,'newgame.c']]]
+  ['newgame_2eh_12',['newgame.h',['../newgame_8h.html',1,'']]],
+  ['next_5fstep_13',['next_step',['../game_8c.html#a63c5c78f3fc02b121865b49c12eae4b1',1,'next_step(int map[200][200], struct cell board[60][200], int rounds, int mapchoice):&#160;game.c'],['../newgame_8h.html#a63c5c78f3fc02b121865b49c12eae4b1',1,'next_step(int map[200][200], struct cell board[60][200], int rounds, int mapchoice):&#160;game.c']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['board_43',['board',['../newgame_8c.html#ae0886cf520a1160243bba0933f9d9404',1,'newgame.c']]]
+  ['current_28',['current',['../structcell.html#ab04e2d55ea4a544f3575812582af7b51',1,'cell']]]
 ];

@@ -1,0 +1,232 @@
+\hypertarget{newgame_8c}{}\doxysection{newgame.\+c File Reference}
+\label{newgame_8c}\index{newgame.c@{newgame.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcell}{cell}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{newgame_8c_ac9f36231981b0e91da4cf5d3098cd771}{map\+\_\+choice}} (void)
+\item 
+void \mbox{\hyperlink{newgame_8c_a45b65f104402d5f92a251f3284f0ee7c}{seed\+\_\+choice}} (void)
+\begin{DoxyCompactList}\small\item\em lets the player choose the seed from 2 options, random or predetermined \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{newgame_8c_a92f9b43bb78c524c2ae189655f710afa}{initgame}} (int \mbox{\hyperlink{newgame_8c_a7f7b7dc24e5199077cf781f41f733bed}{mapchoice}}, int \mbox{\hyperlink{newgame_8c_a293067d72e8b8f589500bd9f767c0730}{seedchoice}})
+\item 
+void \mbox{\hyperlink{newgame_8c_aa581d94e8eeb6400bbd3fef7bf89fe5f}{next\+\_\+step}} (void)
+\item 
+int \mbox{\hyperlink{newgame_8c_a82025d1c07fdab18c8da47976881457c}{calculate\+\_\+future}} (int \mbox{\hyperlink{newgame_8c_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{newgame_8c_a37d972ae0b47b9099e30983131d31916}{j}})
+\item 
+void \mbox{\hyperlink{newgame_8c_aaafeda87a60d77d408c3ed7476f35cca}{date\+\_\+and\+\_\+infection}} (void)
+\item 
+void \mbox{\hyperlink{newgame_8c_a1c23cf88cc98d94a8729a038cf7c1660}{infect}} (int \mbox{\hyperlink{newgame_8c_ab951ebd61b5fff7fb5c4212d7fc63254}{rounds}})
+\item 
+int \mbox{\hyperlink{newgame_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{newgame_8c_a0a2f84ed7838f07779ae24c5a9086d33}{y}}
+\item 
+int \mbox{\hyperlink{newgame_8c_a6150e0515f7202e2fb518f7206ed97dc}{x}}
+\item 
+int \mbox{\hyperlink{newgame_8c_acb559820d9ca11295b4500f179ef6392}{i}}
+\item 
+int \mbox{\hyperlink{newgame_8c_a37d972ae0b47b9099e30983131d31916}{j}}
+\item 
+int \mbox{\hyperlink{newgame_8c_a7ca443cbb568e95510880b6ec54dbe5e}{y\+Max}}
+\item 
+int \mbox{\hyperlink{newgame_8c_af201ccbf3fe6a7e8274aa3eca22ac711}{x\+Max}}
+\item 
+int \mbox{\hyperlink{newgame_8c_a7f7b7dc24e5199077cf781f41f733bed}{mapchoice}} = 0
+\item 
+int \mbox{\hyperlink{newgame_8c_a293067d72e8b8f589500bd9f767c0730}{seedchoice}} = 0
+\item 
+int \mbox{\hyperlink{newgame_8c_a4c11afc03fc3ee49bab660def6558f2a}{day}}
+\item 
+int \mbox{\hyperlink{newgame_8c_aedb06abe5aff12fa3e7e0e71a374edfb}{month}}
+\item 
+int \mbox{\hyperlink{newgame_8c_abeac221e38b7b9ce7df8722c842bf671}{year}}
+\item 
+int \mbox{\hyperlink{newgame_8c_af41e0afec2c0be0f14077c4c60b07105}{infected}} = 0
+\item 
+int \mbox{\hyperlink{newgame_8c_a323a114b05bef4fdfd6479b30d6ab382}{healthy}} = 0
+\item 
+int \mbox{\hyperlink{newgame_8c_ab951ebd61b5fff7fb5c4212d7fc63254}{rounds}} = 0
+\item 
+int \mbox{\hyperlink{newgame_8c_a6c5bb4d2ff771c39d71908ac861025a7}{map}} \mbox{[}200\mbox{]}\mbox{[}200\mbox{]} = \{0,0\}
+\item 
+struct \mbox{\hyperlink{structcell}{cell}} \mbox{\hyperlink{newgame_8c_ae0886cf520a1160243bba0933f9d9404}{board}} \mbox{[}60\mbox{]}\mbox{[}200\mbox{]} = \{0,0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{newgame_8c_a82025d1c07fdab18c8da47976881457c}\label{newgame_8c_a82025d1c07fdab18c8da47976881457c}} 
+\index{newgame.c@{newgame.c}!calculate\_future@{calculate\_future}}
+\index{calculate\_future@{calculate\_future}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_future()}{calculate\_future()}}
+{\footnotesize\ttfamily int calculate\+\_\+future (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{newgame_8c_aaafeda87a60d77d408c3ed7476f35cca}\label{newgame_8c_aaafeda87a60d77d408c3ed7476f35cca}} 
+\index{newgame.c@{newgame.c}!date\_and\_infection@{date\_and\_infection}}
+\index{date\_and\_infection@{date\_and\_infection}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{date\_and\_infection()}{date\_and\_infection()}}
+{\footnotesize\ttfamily void date\+\_\+and\+\_\+infection (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{newgame_8c_a1c23cf88cc98d94a8729a038cf7c1660}\label{newgame_8c_a1c23cf88cc98d94a8729a038cf7c1660}} 
+\index{newgame.c@{newgame.c}!infect@{infect}}
+\index{infect@{infect}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{infect()}{infect()}}
+{\footnotesize\ttfamily void infect (\begin{DoxyParamCaption}\item[{int}]{rounds }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{newgame_8c_a92f9b43bb78c524c2ae189655f710afa}\label{newgame_8c_a92f9b43bb78c524c2ae189655f710afa}} 
+\index{newgame.c@{newgame.c}!initgame@{initgame}}
+\index{initgame@{initgame}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{initgame()}{initgame()}}
+{\footnotesize\ttfamily void initgame (\begin{DoxyParamCaption}\item[{int}]{mapchoice,  }\item[{int}]{seedchoice }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{newgame_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{newgame_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{newgame.c@{newgame.c}!main@{main}}
+\index{main@{main}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{newgame_8c_ac9f36231981b0e91da4cf5d3098cd771}\label{newgame_8c_ac9f36231981b0e91da4cf5d3098cd771}} 
+\index{newgame.c@{newgame.c}!map\_choice@{map\_choice}}
+\index{map\_choice@{map\_choice}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{map\_choice()}{map\_choice()}}
+{\footnotesize\ttfamily void map\+\_\+choice (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{newgame_8c_aa581d94e8eeb6400bbd3fef7bf89fe5f}\label{newgame_8c_aa581d94e8eeb6400bbd3fef7bf89fe5f}} 
+\index{newgame.c@{newgame.c}!next\_step@{next\_step}}
+\index{next\_step@{next\_step}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{next\_step()}{next\_step()}}
+{\footnotesize\ttfamily void next\+\_\+step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{newgame_8c_a45b65f104402d5f92a251f3284f0ee7c}\label{newgame_8c_a45b65f104402d5f92a251f3284f0ee7c}} 
+\index{newgame.c@{newgame.c}!seed\_choice@{seed\_choice}}
+\index{seed\_choice@{seed\_choice}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{seed\_choice()}{seed\_choice()}}
+{\footnotesize\ttfamily void seed\+\_\+choice (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+lets the player choose the seed from 2 options, random or predetermined 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{newgame_8c_ae0886cf520a1160243bba0933f9d9404}\label{newgame_8c_ae0886cf520a1160243bba0933f9d9404}} 
+\index{newgame.c@{newgame.c}!board@{board}}
+\index{board@{board}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structcell}{cell}} board\mbox{[}60\mbox{]}\mbox{[}200\mbox{]} = \{0,0\}}
+
+\mbox{\Hypertarget{newgame_8c_a4c11afc03fc3ee49bab660def6558f2a}\label{newgame_8c_a4c11afc03fc3ee49bab660def6558f2a}} 
+\index{newgame.c@{newgame.c}!day@{day}}
+\index{day@{day}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{day}{day}}
+{\footnotesize\ttfamily int day}
+
+\mbox{\Hypertarget{newgame_8c_a323a114b05bef4fdfd6479b30d6ab382}\label{newgame_8c_a323a114b05bef4fdfd6479b30d6ab382}} 
+\index{newgame.c@{newgame.c}!healthy@{healthy}}
+\index{healthy@{healthy}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{healthy}{healthy}}
+{\footnotesize\ttfamily int healthy = 0}
+
+\mbox{\Hypertarget{newgame_8c_acb559820d9ca11295b4500f179ef6392}\label{newgame_8c_acb559820d9ca11295b4500f179ef6392}} 
+\index{newgame.c@{newgame.c}!i@{i}}
+\index{i@{i}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{i}{i}}
+{\footnotesize\ttfamily int i}
+
+\mbox{\Hypertarget{newgame_8c_af41e0afec2c0be0f14077c4c60b07105}\label{newgame_8c_af41e0afec2c0be0f14077c4c60b07105}} 
+\index{newgame.c@{newgame.c}!infected@{infected}}
+\index{infected@{infected}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{infected}{infected}}
+{\footnotesize\ttfamily int infected = 0}
+
+\mbox{\Hypertarget{newgame_8c_a37d972ae0b47b9099e30983131d31916}\label{newgame_8c_a37d972ae0b47b9099e30983131d31916}} 
+\index{newgame.c@{newgame.c}!j@{j}}
+\index{j@{j}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{j}{j}}
+{\footnotesize\ttfamily int j}
+
+\mbox{\Hypertarget{newgame_8c_a6c5bb4d2ff771c39d71908ac861025a7}\label{newgame_8c_a6c5bb4d2ff771c39d71908ac861025a7}} 
+\index{newgame.c@{newgame.c}!map@{map}}
+\index{map@{map}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily int map\mbox{[}200\mbox{]}\mbox{[}200\mbox{]} = \{0,0\}}
+
+\mbox{\Hypertarget{newgame_8c_a7f7b7dc24e5199077cf781f41f733bed}\label{newgame_8c_a7f7b7dc24e5199077cf781f41f733bed}} 
+\index{newgame.c@{newgame.c}!mapchoice@{mapchoice}}
+\index{mapchoice@{mapchoice}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{mapchoice}{mapchoice}}
+{\footnotesize\ttfamily int mapchoice = 0}
+
+\mbox{\Hypertarget{newgame_8c_aedb06abe5aff12fa3e7e0e71a374edfb}\label{newgame_8c_aedb06abe5aff12fa3e7e0e71a374edfb}} 
+\index{newgame.c@{newgame.c}!month@{month}}
+\index{month@{month}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{month}{month}}
+{\footnotesize\ttfamily int month}
+
+\mbox{\Hypertarget{newgame_8c_ab951ebd61b5fff7fb5c4212d7fc63254}\label{newgame_8c_ab951ebd61b5fff7fb5c4212d7fc63254}} 
+\index{newgame.c@{newgame.c}!rounds@{rounds}}
+\index{rounds@{rounds}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{rounds}{rounds}}
+{\footnotesize\ttfamily int rounds = 0}
+
+\mbox{\Hypertarget{newgame_8c_a293067d72e8b8f589500bd9f767c0730}\label{newgame_8c_a293067d72e8b8f589500bd9f767c0730}} 
+\index{newgame.c@{newgame.c}!seedchoice@{seedchoice}}
+\index{seedchoice@{seedchoice}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{seedchoice}{seedchoice}}
+{\footnotesize\ttfamily int seedchoice = 0}
+
+\mbox{\Hypertarget{newgame_8c_a6150e0515f7202e2fb518f7206ed97dc}\label{newgame_8c_a6150e0515f7202e2fb518f7206ed97dc}} 
+\index{newgame.c@{newgame.c}!x@{x}}
+\index{x@{x}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily int x}
+
+\mbox{\Hypertarget{newgame_8c_af201ccbf3fe6a7e8274aa3eca22ac711}\label{newgame_8c_af201ccbf3fe6a7e8274aa3eca22ac711}} 
+\index{newgame.c@{newgame.c}!xMax@{xMax}}
+\index{xMax@{xMax}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{xMax}{xMax}}
+{\footnotesize\ttfamily int x\+Max}
+
+\mbox{\Hypertarget{newgame_8c_a0a2f84ed7838f07779ae24c5a9086d33}\label{newgame_8c_a0a2f84ed7838f07779ae24c5a9086d33}} 
+\index{newgame.c@{newgame.c}!y@{y}}
+\index{y@{y}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily int y}
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Remove all global variables \end{DoxyRefDesc}
+\mbox{\Hypertarget{newgame_8c_abeac221e38b7b9ce7df8722c842bf671}\label{newgame_8c_abeac221e38b7b9ce7df8722c842bf671}} 
+\index{newgame.c@{newgame.c}!year@{year}}
+\index{year@{year}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{year}{year}}
+{\footnotesize\ttfamily int year}
+
+\mbox{\Hypertarget{newgame_8c_a7ca443cbb568e95510880b6ec54dbe5e}\label{newgame_8c_a7ca443cbb568e95510880b6ec54dbe5e}} 
+\index{newgame.c@{newgame.c}!yMax@{yMax}}
+\index{yMax@{yMax}!newgame.c@{newgame.c}}
+\doxysubsubsection{\texorpdfstring{yMax}{yMax}}
+{\footnotesize\ttfamily int y\+Max}
+

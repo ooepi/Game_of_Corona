@@ -1,0 +1,270 @@
+\hypertarget{gamenc_8c}{}\doxysection{gamenc.\+c File Reference}
+\label{gamenc_8c}\index{gamenc.c@{gamenc.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcell}{cell}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gamenc_8c_a98133f3bc8c62b912d63da405e2adb15}{init\+\_\+board}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_a6acefca2a94ae39a45f1d614e5d98ca5}{draw\+\_\+board}} (int xstart, int ystart)
+\item 
+void \mbox{\hyperlink{gamenc_8c_a51d892701d041b2bb05de1594a5e38e8}{game\+\_\+setup}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_aa581d94e8eeb6400bbd3fef7bf89fe5f}{next\+\_\+step}} (void)
+\item 
+int \mbox{\hyperlink{gamenc_8c_a4274d6bfabca9c916e3b8230ce49b487}{calculate\+\_\+neighbors}} (int \mbox{\hyperlink{newgame_8c_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{newgame_8c_a37d972ae0b47b9099e30983131d31916}{j}})
+\item 
+void \mbox{\hyperlink{gamenc_8c_ac335b49d048ede4ba51d4e3a2334662f}{print\+\_\+curses}} (void)
+\item 
+int \mbox{\hyperlink{gamenc_8c_a219c351c9f40d16f05553c99a3b7e378}{main\+\_\+menu}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_aeba7c8dc6c2ee6f7be50409ad9e0a9f9}{game\+\_\+of\+\_\+life}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_ad862b1d520d1f6ba4641a369c21d59fc}{game\+\_\+of\+\_\+war}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_aa35f1ebe1050cc52146153d3a0613cf3}{game\+\_\+of\+\_\+corona}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_a64004367b001a893412670983309f76f}{choose\+\_\+map}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_a1c287589720cd661144fcade853867ee}{choose\+\_\+seed}} (void)
+\item 
+void \mbox{\hyperlink{gamenc_8c_ae200eabef0dc146c67df76ae78df4649}{init\+\_\+map}} (int map\+\_\+number)
+\item 
+void \mbox{\hyperlink{gamenc_8c_a62da225418e5376bb130b7fb0adfd327}{draw\+\_\+square}} (int size)
+\item 
+void \mbox{\hyperlink{gamenc_8c_a0e2f760e8c6b9aa44626fafb9101aff3}{init\+\_\+seed}} (int seed)
+\item 
+int \mbox{\hyperlink{gamenc_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcell}{cell}} \mbox{\hyperlink{gamenc_8c_a332fe53dbae1843b7b32e28b7ff1e50f}{board}} \mbox{[}69\mbox{]}\mbox{[}255\mbox{]} = \{0\}
+\item 
+char \mbox{\hyperlink{gamenc_8c_a43c2a4d6e03960c2c5577fdff4d976b6}{map}} \mbox{[}150\mbox{]}\mbox{[}40\mbox{]} = \{\textquotesingle{} \textquotesingle{}\}
+\item 
+int \mbox{\hyperlink{gamenc_8c_aa87036abc007f09ec63e84009d40ec9a}{gamemode}}
+\item 
+int \mbox{\hyperlink{gamenc_8c_ab1bd972b1e308584bc5cfdc1652e5853}{map\+\_\+choice}}
+\item 
+int \mbox{\hyperlink{gamenc_8c_a97de599b0e956a1dafe0c9dca2a1d016}{seed\+\_\+choice}}
+\begin{DoxyCompactList}\small\item\em lets the player choose the seed from 2 options, random or predetermined \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gamenc_8c_a6150e0515f7202e2fb518f7206ed97dc}{x}}
+\item 
+int \mbox{\hyperlink{gamenc_8c_a0a2f84ed7838f07779ae24c5a9086d33}{y}}
+\item 
+int \mbox{\hyperlink{gamenc_8c_acb559820d9ca11295b4500f179ef6392}{i}}
+\item 
+int \mbox{\hyperlink{gamenc_8c_a37d972ae0b47b9099e30983131d31916}{j}}
+\item 
+int \mbox{\hyperlink{gamenc_8c_a7ca443cbb568e95510880b6ec54dbe5e}{y\+Max}} = 10
+\item 
+int \mbox{\hyperlink{gamenc_8c_af201ccbf3fe6a7e8274aa3eca22ac711}{x\+Max}} = 10
+\item 
+int \mbox{\hyperlink{gamenc_8c_a3ac7875b79405482b4ccdf60602c7375}{y\+Size}}
+\item 
+int \mbox{\hyperlink{gamenc_8c_a596fd5b44fb7e2ae84105e24db979006}{x\+Size}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gamenc_8c_a4274d6bfabca9c916e3b8230ce49b487}\label{gamenc_8c_a4274d6bfabca9c916e3b8230ce49b487}} 
+\index{gamenc.c@{gamenc.c}!calculate\_neighbors@{calculate\_neighbors}}
+\index{calculate\_neighbors@{calculate\_neighbors}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_neighbors()}{calculate\_neighbors()}}
+{\footnotesize\ttfamily int calculate\+\_\+neighbors (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a64004367b001a893412670983309f76f}\label{gamenc_8c_a64004367b001a893412670983309f76f}} 
+\index{gamenc.c@{gamenc.c}!choose\_map@{choose\_map}}
+\index{choose\_map@{choose\_map}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{choose\_map()}{choose\_map()}}
+{\footnotesize\ttfamily void choose\+\_\+map (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a1c287589720cd661144fcade853867ee}\label{gamenc_8c_a1c287589720cd661144fcade853867ee}} 
+\index{gamenc.c@{gamenc.c}!choose\_seed@{choose\_seed}}
+\index{choose\_seed@{choose\_seed}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{choose\_seed()}{choose\_seed()}}
+{\footnotesize\ttfamily void choose\+\_\+seed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a6acefca2a94ae39a45f1d614e5d98ca5}\label{gamenc_8c_a6acefca2a94ae39a45f1d614e5d98ca5}} 
+\index{gamenc.c@{gamenc.c}!draw\_board@{draw\_board}}
+\index{draw\_board@{draw\_board}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{draw\_board()}{draw\_board()}}
+{\footnotesize\ttfamily void draw\+\_\+board (\begin{DoxyParamCaption}\item[{int}]{xstart,  }\item[{int}]{ystart }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a62da225418e5376bb130b7fb0adfd327}\label{gamenc_8c_a62da225418e5376bb130b7fb0adfd327}} 
+\index{gamenc.c@{gamenc.c}!draw\_square@{draw\_square}}
+\index{draw\_square@{draw\_square}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{draw\_square()}{draw\_square()}}
+{\footnotesize\ttfamily void draw\+\_\+square (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_aa35f1ebe1050cc52146153d3a0613cf3}\label{gamenc_8c_aa35f1ebe1050cc52146153d3a0613cf3}} 
+\index{gamenc.c@{gamenc.c}!game\_of\_corona@{game\_of\_corona}}
+\index{game\_of\_corona@{game\_of\_corona}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{game\_of\_corona()}{game\_of\_corona()}}
+{\footnotesize\ttfamily void game\+\_\+of\+\_\+corona (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_aeba7c8dc6c2ee6f7be50409ad9e0a9f9}\label{gamenc_8c_aeba7c8dc6c2ee6f7be50409ad9e0a9f9}} 
+\index{gamenc.c@{gamenc.c}!game\_of\_life@{game\_of\_life}}
+\index{game\_of\_life@{game\_of\_life}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{game\_of\_life()}{game\_of\_life()}}
+{\footnotesize\ttfamily void game\+\_\+of\+\_\+life (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_ad862b1d520d1f6ba4641a369c21d59fc}\label{gamenc_8c_ad862b1d520d1f6ba4641a369c21d59fc}} 
+\index{gamenc.c@{gamenc.c}!game\_of\_war@{game\_of\_war}}
+\index{game\_of\_war@{game\_of\_war}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{game\_of\_war()}{game\_of\_war()}}
+{\footnotesize\ttfamily void game\+\_\+of\+\_\+war (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a51d892701d041b2bb05de1594a5e38e8}\label{gamenc_8c_a51d892701d041b2bb05de1594a5e38e8}} 
+\index{gamenc.c@{gamenc.c}!game\_setup@{game\_setup}}
+\index{game\_setup@{game\_setup}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{game\_setup()}{game\_setup()}}
+{\footnotesize\ttfamily void game\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a98133f3bc8c62b912d63da405e2adb15}\label{gamenc_8c_a98133f3bc8c62b912d63da405e2adb15}} 
+\index{gamenc.c@{gamenc.c}!init\_board@{init\_board}}
+\index{init\_board@{init\_board}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{init\_board()}{init\_board()}}
+{\footnotesize\ttfamily void init\+\_\+board (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_ae200eabef0dc146c67df76ae78df4649}\label{gamenc_8c_ae200eabef0dc146c67df76ae78df4649}} 
+\index{gamenc.c@{gamenc.c}!init\_map@{init\_map}}
+\index{init\_map@{init\_map}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{init\_map()}{init\_map()}}
+{\footnotesize\ttfamily void init\+\_\+map (\begin{DoxyParamCaption}\item[{int}]{map\+\_\+number }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a0e2f760e8c6b9aa44626fafb9101aff3}\label{gamenc_8c_a0e2f760e8c6b9aa44626fafb9101aff3}} 
+\index{gamenc.c@{gamenc.c}!init\_seed@{init\_seed}}
+\index{init\_seed@{init\_seed}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{init\_seed()}{init\_seed()}}
+{\footnotesize\ttfamily void init\+\_\+seed (\begin{DoxyParamCaption}\item[{int}]{seed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{gamenc_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{gamenc.c@{gamenc.c}!main@{main}}
+\index{main@{main}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_a219c351c9f40d16f05553c99a3b7e378}\label{gamenc_8c_a219c351c9f40d16f05553c99a3b7e378}} 
+\index{gamenc.c@{gamenc.c}!main\_menu@{main\_menu}}
+\index{main\_menu@{main\_menu}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{main\_menu()}{main\_menu()}}
+{\footnotesize\ttfamily int main\+\_\+menu (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_aa581d94e8eeb6400bbd3fef7bf89fe5f}\label{gamenc_8c_aa581d94e8eeb6400bbd3fef7bf89fe5f}} 
+\index{gamenc.c@{gamenc.c}!next\_step@{next\_step}}
+\index{next\_step@{next\_step}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{next\_step()}{next\_step()}}
+{\footnotesize\ttfamily void next\+\_\+step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gamenc_8c_ac335b49d048ede4ba51d4e3a2334662f}\label{gamenc_8c_ac335b49d048ede4ba51d4e3a2334662f}} 
+\index{gamenc.c@{gamenc.c}!print\_curses@{print\_curses}}
+\index{print\_curses@{print\_curses}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{print\_curses()}{print\_curses()}}
+{\footnotesize\ttfamily void print\+\_\+curses (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gamenc_8c_a332fe53dbae1843b7b32e28b7ff1e50f}\label{gamenc_8c_a332fe53dbae1843b7b32e28b7ff1e50f}} 
+\index{gamenc.c@{gamenc.c}!board@{board}}
+\index{board@{board}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structcell}{cell}} board\mbox{[}69\mbox{]}\mbox{[}255\mbox{]} = \{0\}}
+
+\mbox{\Hypertarget{gamenc_8c_aa87036abc007f09ec63e84009d40ec9a}\label{gamenc_8c_aa87036abc007f09ec63e84009d40ec9a}} 
+\index{gamenc.c@{gamenc.c}!gamemode@{gamemode}}
+\index{gamemode@{gamemode}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{gamemode}{gamemode}}
+{\footnotesize\ttfamily int gamemode}
+
+\mbox{\Hypertarget{gamenc_8c_acb559820d9ca11295b4500f179ef6392}\label{gamenc_8c_acb559820d9ca11295b4500f179ef6392}} 
+\index{gamenc.c@{gamenc.c}!i@{i}}
+\index{i@{i}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{i}{i}}
+{\footnotesize\ttfamily int i}
+
+\mbox{\Hypertarget{gamenc_8c_a37d972ae0b47b9099e30983131d31916}\label{gamenc_8c_a37d972ae0b47b9099e30983131d31916}} 
+\index{gamenc.c@{gamenc.c}!j@{j}}
+\index{j@{j}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{j}{j}}
+{\footnotesize\ttfamily int j}
+
+\mbox{\Hypertarget{gamenc_8c_a43c2a4d6e03960c2c5577fdff4d976b6}\label{gamenc_8c_a43c2a4d6e03960c2c5577fdff4d976b6}} 
+\index{gamenc.c@{gamenc.c}!map@{map}}
+\index{map@{map}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily char map\mbox{[}150\mbox{]}\mbox{[}40\mbox{]} = \{\textquotesingle{} \textquotesingle{}\}}
+
+\mbox{\Hypertarget{gamenc_8c_ab1bd972b1e308584bc5cfdc1652e5853}\label{gamenc_8c_ab1bd972b1e308584bc5cfdc1652e5853}} 
+\index{gamenc.c@{gamenc.c}!map\_choice@{map\_choice}}
+\index{map\_choice@{map\_choice}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{map\_choice}{map\_choice}}
+{\footnotesize\ttfamily void map\+\_\+choice}
+
+\mbox{\Hypertarget{gamenc_8c_a97de599b0e956a1dafe0c9dca2a1d016}\label{gamenc_8c_a97de599b0e956a1dafe0c9dca2a1d016}} 
+\index{gamenc.c@{gamenc.c}!seed\_choice@{seed\_choice}}
+\index{seed\_choice@{seed\_choice}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{seed\_choice}{seed\_choice}}
+{\footnotesize\ttfamily void seed\+\_\+choice}
+
+
+
+lets the player choose the seed from 2 options, random or predetermined 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void Used global variables\+: y\+Max, x\+Max, seedchoice R\+E\+M\+A\+R\+KS when using this function\+: N\+OT IN U\+SE F\+OR T\+H\+IS V\+E\+R\+S\+I\+ON 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gamenc_8c_a6150e0515f7202e2fb518f7206ed97dc}\label{gamenc_8c_a6150e0515f7202e2fb518f7206ed97dc}} 
+\index{gamenc.c@{gamenc.c}!x@{x}}
+\index{x@{x}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily int x}
+
+\mbox{\Hypertarget{gamenc_8c_af201ccbf3fe6a7e8274aa3eca22ac711}\label{gamenc_8c_af201ccbf3fe6a7e8274aa3eca22ac711}} 
+\index{gamenc.c@{gamenc.c}!xMax@{xMax}}
+\index{xMax@{xMax}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{xMax}{xMax}}
+{\footnotesize\ttfamily int x\+Max = 10}
+
+\mbox{\Hypertarget{gamenc_8c_a596fd5b44fb7e2ae84105e24db979006}\label{gamenc_8c_a596fd5b44fb7e2ae84105e24db979006}} 
+\index{gamenc.c@{gamenc.c}!xSize@{xSize}}
+\index{xSize@{xSize}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{xSize}{xSize}}
+{\footnotesize\ttfamily int x\+Size}
+
+\mbox{\Hypertarget{gamenc_8c_a0a2f84ed7838f07779ae24c5a9086d33}\label{gamenc_8c_a0a2f84ed7838f07779ae24c5a9086d33}} 
+\index{gamenc.c@{gamenc.c}!y@{y}}
+\index{y@{y}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily int y}
+
+\mbox{\Hypertarget{gamenc_8c_a7ca443cbb568e95510880b6ec54dbe5e}\label{gamenc_8c_a7ca443cbb568e95510880b6ec54dbe5e}} 
+\index{gamenc.c@{gamenc.c}!yMax@{yMax}}
+\index{yMax@{yMax}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{yMax}{yMax}}
+{\footnotesize\ttfamily int y\+Max = 10}
+
+\mbox{\Hypertarget{gamenc_8c_a3ac7875b79405482b4ccdf60602c7375}\label{gamenc_8c_a3ac7875b79405482b4ccdf60602c7375}} 
+\index{gamenc.c@{gamenc.c}!ySize@{ySize}}
+\index{ySize@{ySize}!gamenc.c@{gamenc.c}}
+\doxysubsubsection{\texorpdfstring{ySize}{ySize}}
+{\footnotesize\ttfamily int y\+Size}
+
